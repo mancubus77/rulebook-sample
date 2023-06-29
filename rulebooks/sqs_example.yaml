@@ -1,0 +1,19 @@
+- name: Hello Events
+  hosts: all
+
+  sources:
+    - ansible.eda.aws_sqs_queue:
+        region: us-east-1
+        name: eda
+        delay_seconds: 10
+        access_key: "access_key"
+        secret_key: "secret_key"
+        session_token: "session_token"
+        endpoint_url: https://redhat.com
+
+  rules:
+    - name: Say Hello
+      condition: event.i == 1
+      action:
+        debug:
+          msg: sqs-he-he-he
